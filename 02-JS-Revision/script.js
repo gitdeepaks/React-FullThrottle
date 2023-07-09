@@ -144,48 +144,151 @@ function getBook(id) {
 }
 
 // Destructuring
+
 const book = getBook(1);
+book;
 
 // const title = book.title;
 // const author = book.author;
 
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
   book;
-console.log(author, book, genres);
 
-// const primarygeneres = genres[0];
-// const secendorygeneres = genres[1];
+console.log(author, title, genres);
 
-const [primarygeneres, secendorygeneres, ...otherGeneres] = genres;
+// const primaryGenre = genres[0];
+// const secondaryGenre = genres[1];
 
-console.log(primarygeneres, secendorygeneres, otherGeneres);
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
+console.log(primaryGenre, secondaryGenre, otherGenres);
 
-const newGeneres = [...genres, "epic fantacy"];
+const newGenres = ["epic fantasy", ...genres];
+newGenres;
 
-newGeneres;
 const updatedBook = {
   ...book,
-  //Adding new properties
+  // Adding a new property
   moviePublicationDate: "2001-12-19",
 
-  // Overridingan an existing properties
+  // Overwriting an existing property
   pages: 1210,
 };
 updatedBook;
 
-// templateliterals ``
+// function getYear(str) {
+//   return str.split("-")[0];
+// }
 
-const summary = `a book of title, ${title} ${
-  3 + 4
-} & number of pages of that book is ${pages} the published in ${publicationDate.split(
-  "-"[0]
-)}`;
+const getYear = (str) => str.split("-")[0];
+console.log(getYear(publicationDate));
+
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${getYear(
+  publicationDate
+)}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`;
 summary;
 
-// Ternary Operators
-
 const pagesRange = pages > 1000 ? "over a thousand" : "less than 1000";
-
 pagesRange;
+console.log(`The book has ${pagesRange} pages`);
+// AND Operator
+console.log(true && "Some string");
+console.log(false && "Some string");
+console.log(hasMovieAdaptation && "This book has a movie");
 
-console.log(`The book is ${pagesRange} pages`);
+// falsy: 0, '', null, undefined
+console.log("jonas" && "Some string");
+console.log(0 && "Some string");
+// OR oprator
+console.log(true || "Some string");
+console.log(false || "Some string");
+
+console.log(book.translations.spanish);
+
+const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
+spanishTranslation;
+
+// console.log(book.reviews.librarything.reviewsCount);
+// const countWrong = book.reviews.librarything.reviewsCount || "no data";
+// countWrong;
+
+// const count = book.reviews.librarything.reviewsCount ?? "no data";
+// count;
+
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  librarything;
+  return goodreads + librarything;
+}
+
+console.log(getTotalReviewCount(book));
+
+// /*
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+  librarything;
+  return goodreads + librarything;
+}
+
+const books = getBooks();
+books;
+
+const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+console.log(x);
+
+const titles = books.map((book) => book.title);
+titles;
+
+const essentialData = books.map((book) => ({
+  title: book.title,
+  author: book.author,
+  reviewsCount: getTotalReviewCount(book),
+}));
+essentialData;
+
+const longBooksWithMovie = books
+  .filter((book) => book.pages > 500)
+  .filter((book) => book.hasMovieAdaptation);
+longBooksWithMovie;
+
+const adventureBooks = books
+  .filter((books) => books.genres.includes("adventure"))
+  .map((book) => book.title);
+adventureBooks;
+
+const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+pagesAllBooks;
+
+const arr = [3, 7, 1, 9, 6];
+const sorted = arr.slice().sort((a, b) => a - b);
+sorted;
+arr;
+
+const sortedByPages = books.slice().sort((a, b) => a.pages - b.pages);
+sortedByPages;
+
+// 1) Add book object to array
+const newBook = {
+  id: 6,
+  title: "Harry Potter and the Chamber of Secrets",
+  author: "J. K. Rowling",
+};
+const booksAfterAdd = [...books, newBook];
+booksAfterAdd;
+
+// 2) Delete book object from array
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+booksAfterDelete;
+
+// 3) Update book object in the array
+const booksAfterUpdate = booksAfterDelete.map((book) =>
+  book.id === 1 ? { ...book, pages: 1210 } : book
+);
+booksAfterUpdate;
+
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
+
+// console.log("jonas");
