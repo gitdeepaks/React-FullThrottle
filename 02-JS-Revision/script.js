@@ -366,7 +366,19 @@ function getBooks() {
 
 // booksAfterUpdate;
 
-const fetchUrl = fetch("https://jsonplaceholder.typicode.com/todos/");
+// const fetchUrl = fetch("https://jsonplaceholder.typicode.com/todos/");
 
-fetchUrl.then((res) => res.json()).then((data) => console.log(data));
+// fetchUrl.then((res) => res.json()).then((data) => console.log(data));
+// console.log("deepak");
+
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos/");
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
+const todos = getTodos();
+
+console.log(todos);
+
 console.log("deepak");
