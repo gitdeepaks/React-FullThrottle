@@ -71,10 +71,34 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/prosciutto.jpg"
+        price={200}
+      />
+
+      <Pizza
+        name="Pizza Fungi"
+        ingredients="Tomato, mushrooms"
+        price={299}
+        photoName="pizzas/funghi.jpg"
+      />
     </main>
+  );
+}
+
+function Pizza(props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price + 100}</span>
+      </div>
+    </div>
   );
 }
 
@@ -98,17 +122,6 @@ function Footer() {
   );
 
   // eslint-disable-next-line no-unreachable
-}
-
-function Pizza() {
-  return (
-    <div>
-      ``
-      <img src="pizzas/spinaci.jpg" alt="Pizza spinach" />
-      <h3>Pizza Spinaci</h3>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
-  );
 }
 
 // React version 18
