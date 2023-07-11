@@ -50,8 +50,8 @@ function App() {
   return (
     <div>
       <Header />
-      <Pizza />
-      <Pizza />
+      <Menu />
+      <Footer />
     </div>
   );
 }
@@ -60,9 +60,34 @@ function Header() {
   return <h1>Fast React Pizza Co.</h1>;
 }
 
-function Menu() {}
+function Menu() {
+  return (
+    <div>
+      <h2>Our Menu</h2>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </div>
+  );
+}
 
-function Footer() {}
+function Footer() {
+  const hour = new Date().getHours();
+  const opnenHours = 12;
+  const closeHour = 22;
+  const isOpen = hour >= opnenHours && hour <= closeHour;
+  console.log(isOpen);
+
+  // if (hour >= opnenHours && hour <= closeHour) {
+  //   alert("We are Working Currently");
+  // } else {
+  //   alert("Sorry we are closed");
+  // }
+
+  return <footer>{new Date().toLocaleTimeString()}.We are Open 24*7</footer>;
+
+  // eslint-disable-next-line no-unreachable
+}
 
 function Pizza() {
   return (
