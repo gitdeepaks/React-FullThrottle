@@ -27,7 +27,7 @@ const pizzaData = [
   {
     name: "Pizza Funghi",
     ingredients: "Tomato, mozarella, mushrooms, and onion",
-    price: 399,
+    price: 299,
     photoName: "pizzas/funghi.jpg",
     soldOut: false,
   },
