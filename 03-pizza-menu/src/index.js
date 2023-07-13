@@ -75,12 +75,14 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
 
-      {numPizzas > 0 && (
+      {numPizzas > 0 ? (
         <ul className="pizzas">
           {pizzas.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
+      ) : (
+        <p>We are still workin on our Menu please come back late </p>
       )}
 
       {/* <Pizza
@@ -116,7 +118,7 @@ function Pizza(props) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHours = 12;
+  const openHours = 20;
   const closeHour = 22;
   const isOpen = hour >= openHours && hour <= closeHour;
   console.log(isOpen);
@@ -127,13 +129,25 @@ function Footer() {
   //   alert("Sorry we are closed");
   // }
 
+  if (!isOpen) {
+    return (
+      <p>
+        we are happy to welcome you between {openHours}:00 and {closeHour}:00
+      </p>
+    );
+  }
+
   return (
     <footer className="footer">
-      {isOpen && (
+      {isOpen ? (
         <div className="order">
           <p>We are open util {closeHour}:00 Come visit or Order online</p>
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <p>
+          we are happy to welcome you between {openHours}:00 and {closeHour}:00
+        </p>
       )}
     </footer>
   );
