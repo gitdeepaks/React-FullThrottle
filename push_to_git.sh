@@ -1,3 +1,3 @@
 git add .
-git commit -m "new Project started 🚀"
+git commit -m "new commit 🚀"
 git push
