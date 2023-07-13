@@ -104,6 +104,8 @@ function Menu() {
 
 function Pizza(props) {
   console.log(props);
+  if (props.pizzaObj.soldOut) return null;
+
   return (
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
@@ -118,7 +120,7 @@ function Pizza(props) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHours = 20;
+  const openHours = 12;
   const closeHour = 22;
   const isOpen = hour >= openHours && hour <= closeHour;
   console.log(isOpen);
@@ -129,21 +131,14 @@ function Footer() {
   //   alert("Sorry we are closed");
   // }
 
-  if (!isOpen) {
-    return (
-      <p>
-        we are happy to welcome you between {openHours}:00 and {closeHour}:00
-      </p>
-    );
-  }
+  // if (!isOpen) {
+  //   return <p>CLOSED</p>;
+  // }
 
   return (
     <footer className="footer">
       {isOpen ? (
-        <div className="order">
-          <p>We are open util {closeHour}:00 Come visit or Order online</p>
-          <button className="btn">Order</button>
-        </div>
+        <Order closeHour={closeHour} />
       ) : (
         <p>
           we are happy to welcome you between {openHours}:00 and {closeHour}:00
@@ -153,6 +148,15 @@ function Footer() {
   );
 
   // eslint-disable-next-line no-unreachable
+}
+
+function Order(props) {
+  return (
+    <div className="order">
+      <p>We are open util {props.closeHour}:00 Come visit or Order online</p>
+      <button className="btn">Order</button>
+    </div>
+  );
 }
 
 // React version 18
