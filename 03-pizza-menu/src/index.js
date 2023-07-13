@@ -76,11 +76,18 @@ function Menu() {
       <h2>Our Menu</h2>
 
       {numPizzas > 0 ? (
-        <ul className="pizzas">
-          {pizzas.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        <>
+          <p>
+            Authentic Italian cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious
+          </p>
+
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>We are still workin on our Menu please come back late </p>
       )}
@@ -102,27 +109,35 @@ function Menu() {
   );
 }
 
-function Pizza(props) {
-  console.log(props);
-  if (props.pizzaObj.soldOut) return null;
+function Pizza({ pizzaObj }) {
+  console.log(pizzaObj);
+
+  // if (pizzaObj.soldOut) return null;
 
   return (
-    <li className="pizza">
-      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h3>{props.pizzaObj.name}</h3>
-        <p>{props.pizzaObj.ingredients}</p>
-        <span>{props.pizzaObj.price}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+
+        {/* {pizzaObj.soldOut ? (
+          <span>Sold Out</span>
+        ) : (
+          <span>{pizzaObj.price}</span>
+        )} */}
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
     </li>
   );
 }
 
-function Footer() {
+function Footer(props) {
+  console.log(props);
   const hour = new Date().getHours();
-  const openHours = 12;
+  const openHour = 12;
   const closeHour = 22;
-  const isOpen = hour >= openHours && hour <= closeHour;
+  const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
 
   // if (hour >= opnenHours && hour <= closeHour) {
@@ -138,10 +153,10 @@ function Footer() {
   return (
     <footer className="footer">
       {isOpen ? (
-        <Order closeHour={closeHour} />
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (
         <p>
-          we are happy to welcome you between {openHours}:00 and {closeHour}:00
+          we are happy to welcome you between {openHour}:00 and {closeHour}:00
         </p>
       )}
     </footer>
@@ -150,10 +165,13 @@ function Footer() {
   // eslint-disable-next-line no-unreachable
 }
 
-function Order(props) {
+function Order({ closeHour, openHour }) {
   return (
     <div className="order">
-      <p>We are open util {props.closeHour}:00 Come visit or Order online</p>
+      <p>
+        We are open from {openHour}:00 util {closeHour}:00 Come visit or Order
+        online
+      </p>
       <button className="btn">Order</button>
     </div>
   );
