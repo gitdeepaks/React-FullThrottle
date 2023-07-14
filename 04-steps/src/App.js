@@ -12,6 +12,9 @@ export default function App() {
   function handlePrev() {
     alert("Previous");
   }
+  function handleNext() {
+    alert("Next");
+  }
 
   return (
     <div className="steps">
@@ -26,14 +29,14 @@ export default function App() {
       </p>
       <div className="buttons">
         <button
-          style={{ backgroundColor: "#3944F7", color: "white" }}
+          style={{ backgroundColor: "#3944F8", color: "white" }}
           onClick={handlePrev}
         >
           Prev
         </button>
         <button
           style={{ backgroundColor: "#3944F7", color: "white" }}
-          onClick={() => alert("Next")}
+          onClick={handleNext}
         >
           Next
         </button>
