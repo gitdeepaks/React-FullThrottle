@@ -2,11 +2,15 @@ import React from "react";
 import Friend from "./Friend";
 // import FormAddFriend from "./FormAddFriend";
 
-function FriendList({ friends }) {
+function FriendList({ friends, onSelection }) {
   return (
     <ul>
       {friends.map((friend) => (
-        <Friend friend={friend} key={friend.id}></Friend>
+        <Friend
+          friend={friend}
+          key={friend.id}
+          onSelection={onSelection}
+        ></Friend>
       ))}
     </ul>
   );
