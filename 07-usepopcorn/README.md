@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Movie Browsing Application Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple movie browsing application developed in React. The application provides a list of movies and a list of watched movies with their average ratings and runtimes. It utilizes React Hooks for managing state and rendering several reusable components for displaying the UI.
 
-## Available Scripts
+## Modules
 
-In the project directory, you can run:
+- `React` - A JavaScript library for building user interfaces.
+- `useState` - A Hook in React that allows you to add state to your function components.
 
-### `npm start`
+## Data
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+There are two static lists, `tempMovieData` and `tempWatchedData`, representing a list of movies and a list of watched movies, respectively. These lists are used to initialize the state of the application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## State Variables
 
-### `npm test`
+- `movies` - A state variable that holds the list of movies. It is initialized with `tempMovieData`.
+- `watched` - A state variable that holds the list of watched movies. It is initialized with `tempWatchedData`.
+- `query` - A state variable in the `Search` component used to store the search query.
+- `isOpen` - A state variable in the `Box` component used to toggle the visibility of its children.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Components
 
-### `npm run build`
+- `App` - The root application component. It renders the NavBar and Main components.
+- `NavBar` - A navigation bar component that includes the `Logo` and `Search` components.
+- `Logo` - A simple logo component for the application.
+- `Search` - A search bar component that allows users to enter their search queries.
+- `NumResults` - A component that displays the total number of movies found.
+- `Main` - A component that wraps the main content of the application.
+- `Box` - A collapsible/expandable box component that includes a toggle button. The visibility of its children is controlled by the `isOpen` state variable.
+- `MovieList` - A component that displays a list of movies.
+- `Movie` - A component that displays the details of a single movie.
+- `WatchedSummary` - A component that displays the summary of the watched movies. It includes the number of movies watched, average IMDb rating, average user rating, and average runtime.
+- `WatchedMovieList` - A component that displays a list of watched movies.
+- `WatchedMovies` - A component that displays the details of a single watched movie.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Functions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `average` - A helper function that calculates the average of an array of numbers.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## CSS Classes
 
-### `npm run eject`
+The application utilizes the following CSS classes:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `.nav-bar` - Applied to the NavBar component.
+- `.logo` - Applied to the Logo component.
+- `.search` - Applied to the Search component.
+- `.num-results` - Applied to the NumResults component.
+- `.main` - Applied to the Main component.
+- `.box` - Applied to the Box component.
+- `.btn-toggle` - Applied to the toggle button in the Box component.
+- `.list` - Applied to the lists in the MovieList and WatchedMovieList components.
+- `.summary` - Applied to the WatchedSummary component.
