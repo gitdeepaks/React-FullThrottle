@@ -5,7 +5,6 @@ Here are the important JavaScript topics you would need to revise to excel in Re
 1. **ES6 Features:**
 
    - `let`, `const`: Block-scoped variables
-   - `let`, `const`:
 
    ```javascript
    let name = "John";
@@ -87,11 +86,56 @@ Here are the important JavaScript topics you would need to revise to excel in Re
 
    - Understanding of Promises, async/await, and handling asynchronous operations.
 
+     - Promises:
+
+   ```javascript
+   let promise = new Promise((resolve, reject) => {
+     setTimeout(() => resolve("Promise resolved"), 1000);
+   });
+
+   promise.then((result) => console.log(result)); // "Promise resolved"
+   ```
+
+   - Async/Await:
+
+   ```javascript
+   async function getData() {
+     let response = await fetch("https://api.example.com/data");
+     let data = await response.json();
+     console.log(data);
+   }
+
+   getData();
+   ```
+
 3. **Functional Programming Concepts:**
 
    - High Order Functions: Functions that take other functions as arguments or return functions as a result.
    - Array methods: `map`, `filter`, `reduce`, etc.
    - Immutability: Essential for React's state management.
+
+   - High Order Functions:
+
+   ```javascript
+   const numbers = [1, 2, 3, 4, 5];
+   const double = numbers.map((num) => num * 2); // [2, 4, 6, 8, 10]
+   ```
+
+   - Array methods:
+
+   ```javascript
+   const numbers = [1, 2, 3, 4, 5];
+   const doubled = numbers.map((n) => n * 2); // [2, 4, 6, 8, 10]
+   const even = numbers.filter((n) => n % 2 === 0); // [2, 4]
+   const sum = numbers.reduce((acc, n) => acc + n, 0); // 15
+   ```
+
+   - Immutability:
+
+   ```javascript
+   const obj = { a: 1, b: 2 };
+   const newObj = { ...obj, c: 3 }; // { a: 1, b: 2, c: 3 }, obj is not mutated
+   ```
 
 4. **Understanding `this`:**
 
@@ -131,52 +175,7 @@ Here are the important JavaScript topics you would need to revise to excel in Re
 
 2. **Promises & Asynchronous Programming:**
 
-   - Promises:
-
-   ```javascript
-   let promise = new Promise((resolve, reject) => {
-     setTimeout(() => resolve("Promise resolved"), 1000);
-   });
-
-   promise.then((result) => console.log(result)); // "Promise resolved"
-   ```
-
-   - Async/Await:
-
-   ```javascript
-   async function getData() {
-     let response = await fetch("https://api.example.com/data");
-     let data = await response.json();
-     console.log(data);
-   }
-
-   getData();
-   ```
-
 3. **Functional Programming Concepts:**
-
-   - High Order Functions:
-
-   ```javascript
-   const numbers = [1, 2, 3, 4, 5];
-   const double = numbers.map((num) => num * 2); // [2, 4, 6, 8, 10]
-   ```
-
-   - Array methods:
-
-   ```javascript
-   const numbers = [1, 2, 3, 4, 5];
-   const doubled = numbers.map((n) => n * 2); // [2, 4, 6, 8, 10]
-   const even = numbers.filter((n) => n % 2 === 0); // [2, 4]
-   const sum = numbers.reduce((acc, n) => acc + n, 0); // 15
-   ```
-
-   - Immutability:
-
-   ```javascript
-   const obj = { a: 1, b: 2 };
-   const newObj = { ...obj, c: 3 }; // { a: 1, b: 2, c: 3 }, obj is not mutated
-   ```
 
 4. **Understanding `this`:**
 
