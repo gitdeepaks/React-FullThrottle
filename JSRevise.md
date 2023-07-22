@@ -141,44 +141,6 @@ Here are the important JavaScript topics you would need to revise to excel in Re
 
    - Differentiate between regular function and arrow function in terms of how `this` is handled.
 
-5. **Understanding Event Loop and Call Stack:**
-
-   - It helps in understanding the asynchronous behavior of JavaScript.
-
-6. **Type Checking with JavaScript (`typeof`, `instanceof`):**
-
-   - React PropTypes is a way to enforce type-checking in React.
-
-7. **DOM Manipulation & Events:**
-
-   - Understanding of how to select DOM elements, add event listeners, etc.
-
-8. **JSON:**
-
-   - JSON is used extensively in the context of API responses.
-
-# Here are some code snippets to help illustrate the above concepts:
-
-1. **ES6 Features:**
-
-   - Arrow functions:
-
-   - Template Literals:
-
-   - Destructuring assignment:
-
-   - Rest and Spread Operator:
-
-   - Classes:
-
-   - Modules (This is used in files and imported in other files):
-
-2. **Promises & Asynchronous Programming:**
-
-3. **Functional Programming Concepts:**
-
-4. **Understanding `this`:**
-
    ```javascript
    const person = {
      name: "John",
@@ -191,9 +153,13 @@ Here are the important JavaScript topics you would need to revise to excel in Re
 
 5. **Understanding Event Loop and Call Stack:**
 
+   - It helps in understanding the asynchronous behavior of JavaScript.
+
    This is a concept rather than code, please refer to [What the heck is the event loop anyway?](https://www.youtube.com/watch?v=8aGhZQkoFbQ) for a great explanation.
 
 6. **Type Checking with JavaScript (`typeof`, `instanceof`):**
+
+   - React PropTypes is a way to enforce type-checking in React.
 
    ```javascript
    typeof 42; // "number"
@@ -211,6 +177,8 @@ Here are the important JavaScript topics you would need to revise to excel in Re
 
 7. **DOM Manipulation & Events:**
 
+   - Understanding of how to select DOM elements, add event listeners, etc.
+
    ```javascript
    // select an element
    const element = document.querySelector("#myElement");
@@ -223,6 +191,8 @@ Here are the important JavaScript topics you would need to revise to excel in Re
 
 8. **JSON:**
 
+   - JSON is used extensively in the context of API responses.
+
    ```javascript
    // JSON -> JS object
    const obj = JSON.parse('{"name":"John", "age":30, "city":"New York"}');
@@ -233,9 +203,9 @@ Here are the important JavaScript topics you would need to revise to excel in Re
    console.log(myJSON); // '{"name":"John", "age":30, "city":"New York"}'
    ```
 
-   ## Ternary IfElse
+9. **Ternary IfElse:**
 
-   The ternary operator (also known as the conditional operator) in JavaScript is a more concise way to write simple `if...else` statements. It's called a ternary operator because it takes three operands: a condition, a result for `true`, and a result for `false`.
+The ternary operator (also known as the conditional operator) in JavaScript is a more concise way to write simple `if...else` statements. It's called a ternary operator because it takes three operands: a condition, a result for `true`, and a result for `false`.
 
 Here's the basic syntax:
 
