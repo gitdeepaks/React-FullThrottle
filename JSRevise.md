@@ -5,12 +5,83 @@ Here are the important JavaScript topics you would need to revise to excel in Re
 1. **ES6 Features:**
 
    - `let`, `const`: Block-scoped variables
+   - `let`, `const`:
+
+   ```javascript
+   let name = "John";
+   name = "Mike"; // This is fine
+
+   const age = 30;
+   age = 31; // Error, can't reassign a const
+   ```
+
    - Arrow functions: They have a shorter syntax compared to function expressions and lexically bind the `this` value.
+
+   ```javascript
+   const greet = () => "Hello, world";
+   console.log(greet()); // "Hello, world"
+   ```
+
    - Template Literals: Used for string interpolation and multi-line strings.
+
+   ```javascript
+   let name = "John";
+   console.log(`Hello, ${name}`); // "Hello, John"
+   ```
+
    - Destructuring assignment: Allows you to unpack values from arrays, or properties from objects, into distinct variables.
+
+   ```javascript
+   let [first, , third] = ["red", "yellow", "green"];
+   console.log(first, third); // "red", "green"
+   ```
+
    - Rest and Spread Operator: Used to manage arrays or objects.
+
+   ```javascript
+   let array1 = [1, 2, 3];
+   let array2 = [...array1, 4, 5]; // Spread operator
+   console.log(array2); // [1, 2, 3, 4, 5]
+
+   function sum(a, b, ...args) {
+     // Rest parameter
+     console.log(args); // [3, 4, 5]
+   }
+   sum(1, 2, 3, 4, 5);
+   ```
+
    - Classes: Provides a much simpler and clearer syntax to create object and deal with inheritance.
+
+   ```javascript
+   class Car {
+     constructor(brand) {
+       this.brand = brand;
+     }
+     present() {
+       return `I have a ${this.brand}`;
+     }
+   }
+   let myCar = new Car("Ford");
+   console.log(myCar.present()); // "I have a Ford"
+   ```
+
    - Modules: A way to export and import functions, objects, or values from modules.
+
+   ```javascript
+   // lib.js
+   export const sqrt = Math.sqrt;
+   export function square(x) {
+     return x * x;
+   }
+   export function diag(x, y) {
+     return sqrt(square(x) + square(y));
+   }
+
+   // main.js
+   import { square, diag } from "lib";
+   console.log(square(5)); // 25
+   console.log(diag(4, 3)); // 5
+   ```
 
 2. **Promises & Asynchronous Programming:**
 
@@ -46,83 +117,17 @@ Here are the important JavaScript topics you would need to revise to excel in Re
 
 1. **ES6 Features:**
 
-   - `let`, `const`:
-
-   ```javascript
-   let name = "John";
-   name = "Mike"; // This is fine
-
-   const age = 30;
-   age = 31; // Error, can't reassign a const
-   ```
-
    - Arrow functions:
-
-   ```javascript
-   const greet = () => "Hello, world";
-   console.log(greet()); // "Hello, world"
-   ```
 
    - Template Literals:
 
-   ```javascript
-   let name = "John";
-   console.log(`Hello, ${name}`); // "Hello, John"
-   ```
-
    - Destructuring assignment:
-
-   ```javascript
-   let [first, , third] = ["red", "yellow", "green"];
-   console.log(first, third); // "red", "green"
-   ```
 
    - Rest and Spread Operator:
 
-   ```javascript
-   let array1 = [1, 2, 3];
-   let array2 = [...array1, 4, 5]; // Spread operator
-   console.log(array2); // [1, 2, 3, 4, 5]
-
-   function sum(a, b, ...args) {
-     // Rest parameter
-     console.log(args); // [3, 4, 5]
-   }
-   sum(1, 2, 3, 4, 5);
-   ```
-
    - Classes:
 
-   ```javascript
-   class Car {
-     constructor(brand) {
-       this.brand = brand;
-     }
-     present() {
-       return `I have a ${this.brand}`;
-     }
-   }
-   let myCar = new Car("Ford");
-   console.log(myCar.present()); // "I have a Ford"
-   ```
-
    - Modules (This is used in files and imported in other files):
-
-   ```javascript
-   // lib.js
-   export const sqrt = Math.sqrt;
-   export function square(x) {
-     return x * x;
-   }
-   export function diag(x, y) {
-     return sqrt(square(x) + square(y));
-   }
-
-   // main.js
-   import { square, diag } from "lib";
-   console.log(square(5)); // 25
-   console.log(diag(4, 3)); // 5
-   ```
 
 2. **Promises & Asynchronous Programming:**
 
