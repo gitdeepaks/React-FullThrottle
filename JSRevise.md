@@ -229,4 +229,45 @@ Here are the important JavaScript topics you would need to revise to excel in Re
    console.log(myJSON); // '{"name":"John", "age":30, "city":"New York"}'
    ```
 
+   ## Ternary IfElse
+
+   The ternary operator (also known as the conditional operator) in JavaScript is a more concise way to write simple `if...else` statements. It's called a ternary operator because it takes three operands: a condition, a result for `true`, and a result for `false`.
+
+Here's the basic syntax:
+
+```javascript
+condition ? expression_if_true : expression_if_false;
+```
+
+- The `condition` is an expression that is evaluated as true or false.
+- If the `condition` is true, the operator returns `expression_if_true`.
+- If the `condition` is false, it returns `expression_if_false`.
+
+Here is an example:
+
+```javascript
+let age = 15;
+let beverage = age >= 21 ? "Beer" : "Juice";
+console.log(beverage); // Outputs: "Juice"
+```
+
+In this example, the condition checks if `age` is greater than or equal to `21`. If it is, it assigns the string `"Beer"` to the variable `beverage`. If it isn't, it assigns `"Juice"`.
+
+This is equivalent to the following `if...else` statement:
+
+```javascript
+let age = 15;
+let beverage;
+
+if (age >= 21) {
+  beverage = "Beer";
+} else {
+  beverage = "Juice";
+}
+
+console.log(beverage); // Outputs: "Juice"
+```
+
+As you can see, the ternary operator provides a shorter, more succinct way to write this kind of simple conditional assignment.
+
 Each of these concepts is used heavily in JavaScript and will be invaluable when working with libraries and frameworks like React.
