@@ -294,6 +294,82 @@ test("increments value on click", () => {
 });
 ```
 
+Beyond the fundamentals, there are many more advanced concepts and techniques that are useful when working with React. Here are some of them:
+
+## 13. Render Props:
+
+Render Props is a technique where a child component is supplied as a function prop to a parent component. The parent component then invokes the child component and its function prop with certain arguments.
+
+```jsx
+class DataProvider extends React.Component {
+  state = { data: "Hello" };
+
+  render() {
+    return this.props.render(this.state.data);
+  }
+}
+
+<DataProvider render={(data) => <h1>{data}</h1>} />;
+```
+
+## 14. React Suspense:
+
+React.Suspense allows you to defer rendering part of your application tree until some condition is met (for example, data from an endpoint has been fetched).
+
+```jsx
+<Suspense fallback={<div>Loading...</div>}>
+  <SomeComponent />
+</Suspense>
+```
+
+## 15. Concurrent Mode:
+
+Concurrent Mode is a set of new features, still experimental as of my last update in September 2021, that help React apps stay responsive and gracefully adjust to the user's device capabilities and network speed.
+
+```jsx
+ReactDOM.createRoot(rootElement).render(<App />);
+```
+
+## 16. Error Boundaries:
+
+Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed.
+
+```jsx
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    logErrorToMyService(error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children;
+  }
+}
+```
+
+## 17. React Server Components:
+
+As of my last update in September 2021, React Server Components are an experimental feature and enable a new way to render components. When using server components, the React rendering process - including passing props - takes place entirely on the server, making the client's job much lighter.
+
+## 18. Using Third-Party Libraries with React:
+
+There's a huge ecosystem of libraries compatible with React. It's crucial to know how to integrate third-party libraries, whether they're meant for handling global state (like MobX), dealing with forms (like Formik, react-hook-form), or handling styling (like styled-components, Material UI).
+
+## 19. Optimization Techniques:
+
+Knowledge of when and how to optimize your React application is crucial. This includes understanding the use of `React.memo`, `React.lazy`, and `useMemo`, `useCallback` hooks, as well as concepts like code-splitting.
+
+Again, to stay updated with the latest practices and features, follow the official React documentation and relevant communities. Learning to implement these advanced concepts effectively will certainly give you an edge in interviews and in your day-to-day work.
+
 # Note-
 
 ### Remember that just understanding these concepts isn't enough. During the interview, you'll also need to demonstrate a strong ability to solve problems and build components in a React app. For this, there is no substitute for building projects and getting hands-on experience. Good luck!
