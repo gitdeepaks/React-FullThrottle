@@ -151,11 +151,84 @@ Here are the important JavaScript topics you would need to revise to excel in Re
    person.greet(); // Hello, John
    ```
 
-5. **Understanding Event Loop and Call Stack:**
+5. **Events:**
 
-   - It helps in understanding the asynchronous behavior of JavaScript.
+In JavaScript, "events" are actions or occurrences that happen in the system you are programming, which the system tells you about so you can respond to them in some way if desired. They're a crucial part of the interactive web because they allow us to create functionality that responds to user interaction.
 
-   This is a concept rather than code, please refer to [What the heck is the event loop anyway?](https://www.youtube.com/watch?v=8aGhZQkoFbQ) for a great explanation.
+**Types of Events**
+
+1. **UI Events**: load, unload, resize, scroll, etc.
+2. **Keyboard Events**: keypress, keydown, keyup
+3. **Mouse Events**: click, dblclick, mouseenter, mouseleave, mouseover, mouseout, mousedown, mouseup
+4. **Form Events**: submit, change, focus, blur
+
+**How to use Events**
+There are several ways to use events in JavaScript:
+
+1. **Inline HTML Event Handlers**: You can add an event directly to the HTML tag inside the HTML document.
+
+```html
+<button onclick="alert('Hello World!')">Click Me!</button>
+```
+
+2. **Traditional DOM Event Handlers**: These handlers are methods in an HTML DOM object.
+
+```javascript
+let btn = document.querySelector("button");
+btn.onclick = function () {
+  alert("Hello World!");
+};
+```
+
+3. **DOM Level 2 Event Listeners**: These are methods in an HTML DOM object that let you add and remove event handlers.
+
+```javascript
+let btn = document.querySelector("button");
+btn.addEventListener("click", function () {
+  alert("Hello World!");
+});
+```
+
+The advantage of using `addEventListener` over traditional DOM handlers is that `addEventListener` allows you to add more than one event handler for the same event and element, whereas with traditional handlers, a new event handler overwrites the old one.
+
+**Event Object**
+When an event fires, data about that event is packaged into an "event object." This event object is automatically passed to your event handling function. It contains information about the event, like which element fired the event and user interactions such as mouse coordinates.
+
+```javascript
+let btn = document.querySelector("button");
+btn.addEventListener("click", function (event) {
+  console.log(event); // Logs event object to the console
+});
+```
+
+**Event Propagation**
+Events in JavaScript have three phases:
+
+1. **Capturing Phase**: The event travels down to the target element.
+2. **Target Phase**: The event has reached the target element.
+3. **Bubbling Phase**: The event bubbles up from the target element.
+
+By default, event handlers are executed in the bubbling phase, but you can change this by setting the `useCapture` parameter to `true` in the `addEventListener` method.
+
+**Event Delegation**
+Event delegation is a technique in which you don't set the event listener on the element you want to click, but on its parent element (or any ancestor). You can then check what element was clicked. This technique is useful when you have a lot of elements handled in a similar way, or when you have dynamically added elements.
+
+```javascript
+let ul = document.querySelector("ul");
+ul.addEventListener("click", function (event) {
+  let target = event.target; // Where the click happened
+  while (target != this) {
+    if (target.tagName == "LI") {
+      // Found the element we must handle
+      alert(target.textContent);
+      return;
+    }
+    target = target.parentNode;
+  }
+});
+```
+
+These are the basic concepts related to JavaScript events. To dive deeper, consider resources like MDN Web Docs, a comprehensive and respected resource for web-related documentation, including JavaScript and its associated APIs.
 
 6. **Type Checking with JavaScript (`typeof`, `instanceof`):**
 
@@ -174,6 +247,45 @@ Here are the important JavaScript topics you would need to revise to excel in Re
    let car = new Car();
    console.log(car instanceof Car); // true
    ```
+
+7. **Event Loop and Call back**
+
+**Event Loop**
+The JavaScript Event Loop is the secret behind JavaScript's asynchronous programming. JavaScript executes all operations on a single thread, but using the event loop, it can handle asynchronous operations like waiting for user input or fetching data from a server, even while other code continues to execute.
+
+Here's a basic outline of how the event loop works:
+
+1. When your JavaScript program runs, it starts going down your code line by line, executing each line in turn. This is known as the "call stack".
+
+2. When it hits a function that is asynchronous, like `setTimeout` or an AJAX request, instead of holding up the execution of the rest of the code while it waits for a response or the timer to finish, it offloads that function to the Web API provided by the browser.
+
+3. Once the Web API finishes processing the function, it doesn't go back to the call stack. Instead, it goes to the "Callback Queue".
+
+4. The Event Loop constantly checks the call stack. If the call stack is empty, it takes the first event from the Callback Queue and pushes it to the call stack to be executed.
+
+So the Event Loop is what allows JavaScript to be non-blocking and asynchronous, despite being single-threaded.
+
+**Callbacks**
+A callback function is a function that is passed into another function as an argument and is expected to be "called back" (executed) at a later time. Callbacks are often used to handle asynchronous operations. Here's a simple example of a callback function:
+
+```javascript
+function greeting(name) {
+  alert("Hello " + name);
+}
+
+function processUserInput(callback) {
+  let name = prompt("Please enter your name.");
+  callback(name);
+}
+
+processUserInput(greeting);
+```
+
+In this code, `greeting` is a callback function. It's being passed as an argument to `processUserInput`. `processUserInput` takes the user's name as input and then calls `greeting` with the name as a parameter.
+
+Callbacks are fundamental to JavaScript, but they can lead to problems when used in complex ways. For instance, if you have a callback inside a callback inside another callback (known as "callback hell" or "the pyramid of doom"), the code can get very difficult to read and manage. To deal with these situations, Promises and async/await syntax were introduced, which provide a cleaner and more intuitive syntax for dealing with asynchronous operations.
+
+Remember that callbacks themselves aren't asynchronous. They're just regular functions. What's asynchronous is how they're being used. `setTimeout`, for instance, uses a callback, and it's asynchronous because it doesn't block the rest of your code from running.
 
 7. **DOM Manipulation & Events:**
 
