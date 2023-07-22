@@ -1,4 +1,4 @@
-Sure, here are some key concepts to understand when preparing for a React interview. Each section includes a brief explanation and, where applicable, some code snippets:
+Here are some key concepts to understand when preparing for a React interview. Each section includes a brief explanation and, where applicable, some code snippets:
 
 ## 1. JSX (JavaScript XML):
 
