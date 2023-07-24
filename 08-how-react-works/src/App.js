@@ -26,6 +26,9 @@ export default function App() {
   );
 }
 
+console.log(<DifferentContent test={23} />);
+console.log(DifferentContent()); // Never Do this
+
 function Tabbed({ content }) {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -43,6 +46,8 @@ function Tabbed({ content }) {
       ) : (
         <DifferentContent />
       )}
+
+      {/* {TabContent({ item: content.at(0) })} it will voilate the rules of hooks */}
     </div>
   );
 }
