@@ -59,7 +59,7 @@ export default function App() {
   useEffect(() => {
     fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=blade`)
       .then((res) => res.json())
-      .then((data) => setMovies(data.Search));
+      .then((data) => console.log(data.Search));
   }, []);
 
   return (
