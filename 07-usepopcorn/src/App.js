@@ -285,16 +285,19 @@ function MovieDetails({ selectedId, onCloseMovie }) {
 
   // console.log(title, year);
 
-  useEffect(function () {
-    async function getMovieDetails() {
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${KEY}& i=${selectedId}`
-      );
-      const data = await res.json();
-      setMovie(data);
-    }
-    getMovieDetails();
-  }, []);
+  useEffect(
+    function () {
+      async function getMovieDetails() {
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}& i=${selectedId}`
+        );
+        const data = await res.json();
+        setMovie(data);
+      }
+      getMovieDetails();
+    },
+    [selectedId]
+  );
 
   return (
     <div className="details">
@@ -314,6 +317,7 @@ function MovieDetails({ selectedId, onCloseMovie }) {
             {imdbRating}
             IDB Rating
           </p>
+          <p>year of release - {year}</p>
         </div>
       </header>
 
