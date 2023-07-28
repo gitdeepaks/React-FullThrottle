@@ -258,6 +258,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatced, watched }) {
 
       return function () {
         document.title = "usePopcorn";
+        console.log(`Claen up effct for movie ${title}`);
       };
     },
     [title]
