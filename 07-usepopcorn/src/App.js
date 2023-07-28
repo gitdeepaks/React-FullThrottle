@@ -14,7 +14,7 @@ const average = (arr) => arr.reduce((acc, cur) => acc + cur / arr.length, 0);
 const KEY = "7a7da903";
 
 export default function App() {
-  const [query, setQuery] = useState("Impossible");
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,12 +38,15 @@ export default function App() {
   }
 
   useEffect(() => {
+    const controller = new AbortController();
+
     async function fetchMovies() {
       try {
         setIsLoading(true);
         setError("");
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
+          { signal: controller.signal }
         );
 
         if (!res.ok) throw new Error("Something went wrong");
@@ -52,8 +55,12 @@ export default function App() {
         if (data.Response === "False") throw new Error("Movie not found");
 
         setMovies(data.Search);
+        setError("");
       } catch (error) {
         setError(error.message);
+        if (error.name !== "AbortError") {
+          setError(error.message);
+        }
       } finally {
         setIsLoading(false);
       }
@@ -65,7 +72,12 @@ export default function App() {
       return;
     }
 
+    handleCloseMovie();
     fetchMovies();
+
+    return function () {
+      controller.abort();
+    };
   }, [query]);
 
   return (
@@ -208,7 +220,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatced, watched }) {
     (movie) => movie.imdbID === selectedId
   )?.userRating;
 
-  console.log(isWatched);
+  // console.log(isWatched);
   const {
     Title: title,
     Year: year,
@@ -238,6 +250,20 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatced, watched }) {
   }
 
   useEffect(() => {
+    function callBack(e) {
+      if (e.code === "Escape") {
+        onCloseMovie();
+      }
+    }
+
+    document.addEventListener("keydown", callBack);
+
+    return () => {
+      document.removeEventListener("keydown", callBack);
+    };
+  }, [onCloseMovie]);
+
+  useEffect(() => {
     async function getMovieDetails() {
       setIsLoading(true);
       const res = await fetch(
@@ -258,7 +284,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatced, watched }) {
 
       return function () {
         document.title = "usePopcorn";
-        console.log(`Claen up effct for movie ${title}`);
+        // console.log(`Claen up effct for movie ${title}`);
       };
     },
     [title]
