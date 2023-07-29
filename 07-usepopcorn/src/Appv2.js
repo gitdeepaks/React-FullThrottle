@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import StarRating from "./StarRating";
+import { useMovies } from "./useMovies";
 
 // const tempMovieData = [
 //   //  temporary movie data...
@@ -15,11 +16,11 @@ const KEY = "7a7da903";
 
 export default function Appv2() {
   const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
-  // const [watched, setWatched] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+
+  const { movies, isLoading, error } = useMovies(query, handleCloseMovie);
+
+  // const [watched, setWatched] = useState([]);
   const [watched, setWatched] = useState(function () {
     const storedVal = localStorage.getItem("watched");
     return JSON.parse(storedVal);
@@ -49,49 +50,6 @@ export default function Appv2() {
     },
     [watched]
   );
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function fetchMovies() {
-      try {
-        setIsLoading(true);
-        setError("");
-        const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`,
-          { signal: controller.signal }
-        );
-
-        if (!res.ok) throw new Error("Something went wrong");
-
-        const data = await res.json();
-        if (data.Response === "False") throw new Error("Movie not found");
-
-        setMovies(data.Search);
-        setError("");
-      } catch (error) {
-        setError(error.message);
-        if (error.name !== "AbortError") {
-          setError(error.message);
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    if (query.length <= 3) {
-      setMovies([]);
-      setError("");
-      return;
-    }
-
-    handleCloseMovie();
-    fetchMovies();
-
-    return function () {
-      controller.abort();
-    };
-  }, [query]);
 
   return (
     <>
@@ -157,7 +115,7 @@ function Logo() {
   return (
     <div className="logo">
       <span role="img">🍿</span>
-      <h2>useMovies</h2>
+      <h1>usePopcorn</h1>
     </div>
   );
 }
