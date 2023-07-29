@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import StarRating from "./StarRating";
 
 // const tempMovieData = [
@@ -157,17 +157,37 @@ function Logo() {
   return (
     <div className="logo">
       <span role="img">🍿</span>
-      <h1>useMovies</h1>
+      <h2>useMovies</h2>
     </div>
   );
 }
 
 function Search({ query, setQuery }) {
-  useEffect(function () {
-    const elem = document.querySelector(".search");
-    console.log(elem);
-    elem.focus();
-  }, []);
+  // useEffect(function () {
+  //   const elem = document.querySelector(".search");
+  //   console.log(elem);
+  //   elem.focus();
+  // }, []);
+
+  const inputElement = useRef(null);
+
+  useEffect(
+    function () {
+      function callBck(e) {
+        if (document.activeElement === inputElement.current) {
+          return;
+        }
+
+        if (e.code === "Enter") {
+          inputElement.current.focus();
+          setQuery("");
+        }
+      }
+      document.addEventListener("keydown", callBck);
+      return () => document.addEventListener("keydown", callBck);
+    },
+    [setQuery]
+  );
 
   return (
     <input
@@ -176,6 +196,7 @@ function Search({ query, setQuery }) {
       placeholder="Search movies..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      ref={inputElement}
     />
   );
 }
@@ -234,6 +255,15 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatced, watched }) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
 
+  const countRef = useRef(0);
+
+  useEffect(
+    function () {
+      if (userRating) countRef.current++;
+    },
+    [userRating]
+  );
+
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId
@@ -281,6 +311,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatced, watched }) {
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ").at(0)),
       userRating,
+      countRatingDecisions: countRef.current,
     };
 
     onAddWatced(newWatchedMovie);
