@@ -163,6 +163,12 @@ function Logo() {
 }
 
 function Search({ query, setQuery }) {
+  useEffect(function () {
+    const elem = document.querySelector(".search");
+    console.log(elem);
+    elem.focus();
+  }, []);
+
   return (
     <input
       className="search"
