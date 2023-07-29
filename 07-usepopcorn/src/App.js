@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import StarRating from "./StarRating";
 
-const tempMovieData = [
-  //  temporary movie data...
-];
+// const tempMovieData = [
+//   //  temporary movie data...
+// ];
 
-const tempWatchedData = [
-  //temporary watched data...
-];
+// const tempWatchedData = [
+//   //temporary watched data...
+// ];
 
 const average = (arr) => arr.reduce((acc, cur) => acc + cur / arr.length, 0);
 
