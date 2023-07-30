@@ -1,8 +1,15 @@
 import React from "react";
-import "./App.css";
 
-function App() {
-  return <div>App</div>;
+class Counter extends React.Component {
+  render() {
+    return (
+      <div>
+        <button>-</button>
+        <span>0</span>
+        <button>+</button>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default Counter;
