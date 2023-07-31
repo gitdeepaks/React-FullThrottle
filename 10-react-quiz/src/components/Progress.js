@@ -1,16 +1,14 @@
-import React from "react";
+import { useQuiz } from "../contexts/QuizContext";
 
-function Progress({ i, numQuestions, points, maxPossiblePoints, answer }) {
+function Progress() {
+  const { index, numQuestions, points, maxPossiblePoints, answer } = useQuiz();
+
   return (
     <header className="progress">
-      <progress max={numQuestions} value={i + Number(answer !== null)} />
+      <progress max={numQuestions} value={index + Number(answer !== null)} />
+
       <p>
-        Question{" "}
-        <stron>
-          {" "}
-          {/* It should be <strong> instead of <stron> */}
-          {i + 1} /{numQuestions}
-        </stron>
+        Question <strong>{index + 1}</strong> / {numQuestions}
       </p>
 
       <p>
