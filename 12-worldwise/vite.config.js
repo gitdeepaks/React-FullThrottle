@@ -1,8 +1,14 @@
+// vite.config.js
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-// import eslint from "vite-plugin-eslint";
+import eslintPlugin from "@rollup/plugin-eslint";
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  // Other Vite configurations...
+  plugins: [
+    eslintPlugin({
+      // The file extensions to include for ESLint linting
+      include: "**/*.+(js|jsx|ts|tsx)",
+      // Add any additional ESLint configuration here (optional)
+    }),
+  ],
 });

@@ -8,8 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "server": "json-server --watch data/cities.json --port 4000 --delay 500",
-    "start": "concurrently \"npm run dev\" \"npm run server\""
-
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "concurrently \"npm run dev\" \"npm run server\"npm run lint\""
   },
   "dependencies": {
     "json-server": "^0.17.3",
@@ -25,8 +26,11 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "concurrently": "^8.2.0",
-    "eslint": "^8.36.0",
+    "eslint": "^8.46.0",
     "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "vite": "^4.2.0",
     "vite-plugin-eslint": "^1.8.1"
   }
