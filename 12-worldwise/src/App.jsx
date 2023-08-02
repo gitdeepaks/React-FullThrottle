@@ -3,6 +3,7 @@ import Product from "./pages/Products";
 import Pricing from "./pages/Pricing";
 import HomePage from "./pages/HomePage";
 import PageNotFount from "./pages/PageNotFount";
+import AppLayout from "./pages/AppLayout";
 function App() {
   return (
     <BrowserRouter>
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="product" element={<Product />}></Route>
         <Route path="pricing" element={<Pricing />} />
+        <Route path="app" element={<AppLayout />} />
         <Route path="*" element={<PageNotFount />} />
       </Routes>
     </BrowserRouter>

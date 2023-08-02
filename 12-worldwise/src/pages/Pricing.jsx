@@ -4,7 +4,7 @@ function Pricing() {
   return (
     <div>
       <PageNav />
-      <h1>Pricing</h1>
+      <h1 className="active">Pricing</h1>
     </div>
   );
 }
