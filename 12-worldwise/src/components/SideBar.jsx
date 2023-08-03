@@ -2,6 +2,7 @@ import styles from "./SideBar.module.css";
 import Logo from "./Logo";
 import AppNav from "./AppNav";
 import { Outlet } from "react-router-dom";
+// import { Children } from "react";
 
 function SideBar() {
   return (
@@ -10,7 +11,7 @@ function SideBar() {
       <AppNav />
 
       <Outlet />
-      <p>List of Cities</p>
+
       <footer className={styles.footer}>
         <p className={styles.copyright}>
           &copy; Copyright {new Date().getFullYear()} by WorldWise Inc.
