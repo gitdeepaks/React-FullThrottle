@@ -9,7 +9,6 @@ function createRandomPost() {
 }
 
 // 1) CREATE A  CONTEXT
-
 const PostContext = createContext();
 
 function App() {
@@ -202,12 +201,7 @@ function Archive() {
 }
 
 function Footer() {
-  return (
-    <footer>
-      <List />
-      &copy; by The Atomic Blog ✌️
-    </footer>
-  );
+  return <footer>&copy; by The Atomic Blog ✌️</footer>;
 }
 
 export default App;
