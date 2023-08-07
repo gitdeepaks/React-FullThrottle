@@ -20,8 +20,8 @@ function Map() {
   return (
     <div className={styles.mapContainer}>
       <MapContainer
-        // center={mapPosition}
-        center={[mapLat, mapLng]}
+        center={mapPosition}
+        // center={[mapLat, mapLng]}
         zoom={6}
         scrollWheelZoom={true}
         className={styles.map}
