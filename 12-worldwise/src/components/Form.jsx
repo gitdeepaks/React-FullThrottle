@@ -11,6 +11,7 @@ import Message from "./Message";
 import Spinner from "./Spinner";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useCities } from "../contexts/CitiesContexts";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -25,7 +26,7 @@ const BASE_URL =
 
 function Form() {
   const [lat, lng] = useUrlPosition();
-
+  const { createCity } = useCities();
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
@@ -44,7 +45,7 @@ function Form() {
             `${BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
           const data = await res.json();
-          console.log(data);
+          // console.log(data);
 
           if (!data.countryCode)
             throw new Error(
@@ -64,10 +65,6 @@ function Form() {
     [lat, lng]
   );
 
-  function handleSubmit(e) {
-    e.preventDefauult();
-  }
-
   if (!lat && !lng)
     return <Message message="Start by clicking the location on the map" />;
 
@@ -75,6 +72,24 @@ function Form() {
 
   if (geocodingError) {
     return <Message message={geocodingError} />;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!cityName || !date) {
+      return;
+    }
+
+    const newCity = {
+      cityName,
+      country,
+      emoji,
+      date,
+      notes,
+      position: { lat, lng },
+    };
+    createCity(newCity);
   }
 
   return (
@@ -96,7 +111,12 @@ function Form() {
           onChange={(e) => setDate(e.target.value)}
           value={date}
         /> */}
-        <ReactDatePicker />
+        <ReactDatePicker
+          id="date"
+          onChange={(date) => setDate(date)}
+          selected={date}
+          dateFormat="dd/MM/yyyy"
+        />
       </div>
 
       <div className={styles.row}>
