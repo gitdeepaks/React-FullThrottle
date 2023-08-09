@@ -21,7 +21,7 @@ export function convertToEmoji(countryCode) {
   return String.fromCodePoint(...codePoints);
 }
 
-const BASE_URL =
+const NEW_BASE_URL =
   "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0";
 
 function Form() {
@@ -42,7 +42,7 @@ function Form() {
           setIsLoadingGeoCoding(true);
           setGeocodingError("");
           const res = await fetch(
-            `${BASE_URL}?latitude=${lat}&longitude=${lng}`
+            `${NEW_BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
           const data = await res.json();
           // console.log(data);
