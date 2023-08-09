@@ -1,10 +1,10 @@
-import styles from "./CountryList.module.css";
 import Spinner from "./Spinner";
-import Message from "./Message";
+import styles from "./CountryList.module.css";
 import CountryItem from "./CountryItem";
-import { useCities } from "../contexts/CitiesContexts";
+import Message from "./Message";
+import { useCities } from "../contexts/CitiesContext";
 
-function CountriesList() {
+function CountryList() {
   const { cities, isLoading } = useCities();
 
   if (isLoading) return <Spinner />;
@@ -29,4 +29,4 @@ function CountriesList() {
   );
 }
 
-export default CountriesList;
+export default CountryList;
