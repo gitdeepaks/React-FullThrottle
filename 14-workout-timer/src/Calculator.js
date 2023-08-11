@@ -9,8 +9,6 @@ function Calculator({ workouts, allowSound }) {
 
   const [duration, setDuration] = useState(0);
 
-  const arr = [1, 2, 3, 4, 5, 67];
-
   // const playSound = useCallback(
   //   function () {
   //     if (!allowSound) return;
