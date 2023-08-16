@@ -1,16 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  //   cart: [],
-  cart: [
-    {
-      pizzaId: 15,
-      name: "Mediteranean",
-      quantity: 2,
-      unitPrice: 19,
-      totalPrice: 38,
-    },
-  ],
+  cart: [],
 };
 
 const cartSlice = createSlice({
@@ -50,3 +41,13 @@ export const {
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+export const getCart = (state) => state.cart.cart;
+
+export const getTotalCartQauntity = (state) =>
+  state.cart.cart.reduce((sum, item) => sum + item.quantity, 0);
+
+export const getTotalCartPrice = (state) =>
+  state.cart.cart.reduce((sum, item) => sum + item.totalPrice, 0);
+
+// for very large production we can use 'reselect' library
