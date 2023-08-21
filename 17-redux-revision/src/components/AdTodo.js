@@ -1,34 +1,21 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTodo } from "../features/todo/todoSlice";
+// Counter.js
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { increment, decrement } from "../features/todo/counterSlice";
 
-function AdTodo() {
-  const [input, setInput] = useState("");
+export function AdTodo() {
+  const count = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
 
-  const addTodoHandler = (e) => {
-    e.preventDefault();
-    dispatch(
-      addTodo({
-        item: input,
-        done: false,
-        id: Date.now(),
-      })
-    );
-    setInput("");
-  };
-
   return (
-    <form onSubmit={addTodoHandler}>
-      <input
-        className="bg-black-200"
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <button type="submit">Add</button>
-    </form>
+    <div>
+      <button className="text-black" onClick={() => dispatch(decrement())}>
+        -
+      </button>
+      <span className="text-black">{count}</span>
+      <button className="text-black" onClick={() => dispatch(increment())}>
+        +
+      </button>
+    </div>
   );
 }
-
-export default AdTodo;
