@@ -36,7 +36,7 @@ function App() {
 
   const CopyPasswordToClipboard = useCallback(() => {
     copyPasswordRef.current.select();
-    copyPasswordRef.current?.setSelectionRange(0, 999);
+    copyPasswordRef.current?.setSelectionRange(0, 50);
     window.navigator.clipboard.writeText(password);
   }, [password]);
   useEffect(() => {
@@ -44,7 +44,7 @@ function App() {
   }, [length, number, char, generatePassword]);
 
   return (
-    <div className="w-full max-w-md mx-auto shadow-md  rounded-lg px-4 py-8 my-8 text-green-600 bg-gray-700">
+    <div className="w-full max-w-md mx-auto shadow-md  rounded-lg px-4 py-8 my-8 text-rose-400 bg-gray-700">
       <h1 className="text-white text-center my-3">Random Password Generator</h1>
       <div className="flex shadow rounded-lg overflow-hidden mb-4">
         <input
@@ -57,7 +57,7 @@ function App() {
         />
         <button
           onClick={CopyPasswordToClipboard}
-          className=" uppercase outline-none bg-blue-500 text-white px-3 py-1 shrink-0"
+          className=" uppercase outline-none bg-blue-500 text-white px-3 py-1 shrink-0 hover:bg-blue-400 onClick:shadow-lg transition duration-3"
         >
           copy
         </button>
