@@ -9,9 +9,8 @@ function useCurrencyInfo(currency) {
     )
       .then((response) => response.json())
       .then((data) => setCurrencyInfo(data[currency]));
-    console.log(currencyInfo);
-  }, [currency, currencyInfo]);
-  console.log(currencyInfo);
+  }, [currency]); // Removed currencyInfo from dependency array
+
   return currencyInfo;
 }
 
