@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { useTodoContext } from "../contexts/TodoContext";
 
+TodoItems.propTypes = {
+  todo: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    todo: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+  }).isRequired,
+};
+
 const TodoItems = ({ todo }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [todoMsg, setTodoMsg] = useState(todo.todo);
